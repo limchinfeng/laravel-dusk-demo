@@ -79,9 +79,9 @@ class ProductTest extends DuskTestCase
             // Edit the latest product
             $browser->visit('/products')
                     ->click('#edit-' . $latestProduct->id) // click the edit button with the id of the latest product
-                    ->press('Update')
                     ->assertPathIs('/products/' . $latestProduct->id . '/edit') // check whether the user is redirected to the latest product edit page (/products/:id/edit)
                     ->type('name', $updatedProductName)    // update the product name
+                    ->press('Update')
                     ->assertSee('Product updated successfully');  // check for the success message
             sleep(1);
 
