@@ -18,9 +18,9 @@ abstract class DuskTestCase extends BaseTestCase
     #[BeforeClass]
     public static function prepare(): void
     {
-        // if (! static::runningInSail()) {
-        //     static::startChromeDriver();       // Start the ChromeDriver server (If you are using other WebDriver, you can run your webdriver first)
-        // }
+        if (! static::runningInSail()) {
+            static::startChromeDriver();       // Start the ChromeDriver server (If you are using other WebDriver, you can run your webdriver first)
+        }
     }
 
     /**
@@ -43,12 +43,17 @@ abstract class DuskTestCase extends BaseTestCase
      */
     protected function driver(): RemoteWebDriver
     {
-        // $driverUrl = $_ENV['DUSK_DRIVER_URL'] ?? 'http://localhost:9515';
-        // $browser = $_ENV['DUSK_BROWSER'] ?? 'chrome';
+        $driverUrl = $_ENV['DUSK_DRIVER_URL'] ?? 'http://localhost:9515';
+        $browser = $_ENV['DUSK_BROWSER'] ?? 'chrome';
+
+        // $driverUrl = 'http://localhost:9515';
+        // $browser = 'chrome';
 
         // $driverUrl = 'http://localhost:4444';
-        $driverUrl = 'http://localhost:9515';
-        $browser = 'edge';
+        // $browser = 'firefox';
+
+        // $driverUrl = 'http://localhost:9515';
+        // $browser = 'edge';
 
         switch ($browser) {
             case 'firefox':
