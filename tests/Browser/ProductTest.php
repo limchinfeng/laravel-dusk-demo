@@ -34,13 +34,13 @@ class ProductTest extends DuskTestCase
 
             // Create a new product
             $browser->visit('/products')
-                    ->waitForLink('Create Product') // wait for the 'Create Product' link to appear (Will throw an error if the link is not found within 5 seconds)
+              ->waitForLink('Create Product') // wait for the 'Create Product' link to appear (Will throw an error if the link is not found within 5 seconds)
                     ->clickLink('Create Product')
                     ->waitForInput('name')
                     ->type('name', $productName)
                     ->waitForInput('description')
                     ->type('description', $productDescription)
-                    ->press('Create')   // click the 'Create' button
+              ->press('Create')   // click the 'Create' button
                     ->assertSee('Product added successfully');  // check for the success message
 
             $browser->assertSee($productName);  // check whether the created product name is displayed on the page
@@ -104,6 +104,7 @@ class ProductTest extends DuskTestCase
 
             // Delete the latest product
             $browser->visit('/products')
+                    ->waitFor('#delete-' . $latestProduct->id)  // wait for the delete button with the id of the latest product to appear (Will throw an error if the button is not found within 5 seconds
                     ->press('#delete-' . $latestProduct->id)      // click the delete button with the id of the latest product
                     ->assertPathIs('/products')
                     ->assertDontSee($latestProduct->id)             // check whether the latest product id is not displayed on the page
