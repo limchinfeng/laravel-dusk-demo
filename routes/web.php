@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -19,5 +20,8 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('products', ProductController::class)->except('show');
 });
+
+Route::get('/send-email', [EmailController::class, 'show'])->name('send-email.show');
+Route::post('/send-email', [EmailController::class, 'send'])->name('send-email.send');
 
 require __DIR__.'/auth.php';

@@ -35,4 +35,10 @@ return [
         ],
     ],
 
+    // Mail Sending Testing
+    'mailtrap' => [
+        'api_token' => env('MAILTRAP_API_TOKEN'),
+        'account_id' => env('MAILTRAP_ACCOUNT_ID'),
+        'inbox_id' => env('MAILTRAP_INBOX_ID'),
+    ],
 ];
